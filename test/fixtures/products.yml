@@ -8,6 +8,6 @@ one:
 
 two:
   title: MyString2
-  description: MyText
-  image_url: MyString
+  description: MyText2
+  image_url: MyString2
   price: 9.99
