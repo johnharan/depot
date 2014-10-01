@@ -11,6 +11,7 @@ class ProductTest < ActiveSupport::TestCase
   assert product.errors[:description].any?
   assert product.errors[:price].any?
   assert product.errors[:image_url].any?
+  
 
   test "product price must be positive" do
   product = products(:one)
@@ -26,4 +27,22 @@ class ProductTest < ActiveSupport::TestCase
   product.price = 1
   assert product.valid?
   assert product.errors[:price].none?
+  
+
+  test "image url must point to an image file" do
+  product = products(:one)
+  ok = %w{ frog.gif frog.jpg frog.png FROG.PNG fRoG.PnG
+           http://a.b.c/x/y/z/frog.png frog.jpeg }
+  bad = %w{ frog.doc frog.png/less frog.png.less }
+
+  ok.each do |url|
+    product.image_url = url
+    assert product.valid?, "#{url} should be a valid image url"
+  end
+
+  bad.each do |url|
+    product.image_url = url
+    assert product.invalid?, "#{url} shouldn't be a valid image url"
+  end
+  
 end
