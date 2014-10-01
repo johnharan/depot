@@ -11,6 +11,7 @@ class ProductTest < ActiveSupport::TestCase
   assert product.errors[:description].any?
   assert product.errors[:price].any?
   assert product.errors[:image_url].any?
+  end
   
 
   test "product price must be positive" do
@@ -27,6 +28,7 @@ class ProductTest < ActiveSupport::TestCase
   product.price = 1
   assert product.valid?
   assert product.errors[:price].none?
+  end
   
   
   test "product is not valid without a unique title" do
@@ -38,6 +40,7 @@ class ProductTest < ActiveSupport::TestCase
       assert product.invalid?
       assert_equal ["has already been taken"], product.errors[:title]
     end
+    
   
 
   test "image url must point to an image file" do
@@ -56,4 +59,5 @@ class ProductTest < ActiveSupport::TestCase
     assert product.invalid?, "#{url} shouldn't be a valid image url"
   end
   
+end
 end
