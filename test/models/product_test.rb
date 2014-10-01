@@ -28,6 +28,17 @@ class ProductTest < ActiveSupport::TestCase
   assert product.valid?
   assert product.errors[:price].none?
   
+  
+  test "product is not valid without a unique title" do
+      product = Product.new(:title       => products(:ruby).title,
+                            :description => "xxx", 
+                            :price       => 1, 
+                            :image_url   => "barney.gif")
+
+      assert product.invalid?
+      assert_equal ["has already been taken"], product.errors[:title]
+    end
+  
 
   test "image url must point to an image file" do
   product = products(:one)
