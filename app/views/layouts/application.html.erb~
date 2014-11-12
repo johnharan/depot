@@ -21,11 +21,7 @@
 	<li><a href="http://www..../news">News</a></li>
 	<li><a href="http://www..../contact">Contact</a></li>
 	<li><%= Time.now %></li>
-        <li><%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
-  <% if @cart %>
-  <%= render @cart %>
-  <% end %>
-<% end %></li>
+        
     </ul>
   </div>
   <div id="main">
