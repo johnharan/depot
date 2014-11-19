@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
 	has_many :line_items, dependent: :destroy
-        validates :title, :description, :image_url, presence: true, allow_blank: false
+        validates :name, :address, :email, presence: true, allow_blank: false
 
 	PAYMENT_TYPES = [ "Cheque", "Credit card", "Purchase order" ]
 
